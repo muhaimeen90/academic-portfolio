@@ -191,11 +191,15 @@ export type Project = {
   links: { label: string; href: string }[];
 };
 
+/**
+ * Reverse-chronological. Wider than the CV on purpose — the CV is one page and
+ * has to cut, this page does not.
+ */
 export const projects: Project[] = [
   {
     title: "Malware Copilot",
     note: "Advisor: Dr. Rayhanur Rahman",
-    period: null,
+    period: "2026",
     summary: `An AI-assisted malware analysis workbench that explains what a sample executable does
               rather than only classifying it, targeting the black-box behaviour and false-positive
               burden of existing ML detectors.`,
@@ -208,12 +212,43 @@ export const projects: Project[] = [
        risky samples and surface the closest matching malware family.`,
     ],
     stack: ["Python", "Ghidra", "LLMs", "RAG", "Vector Search", "MITRE ATT&CK"],
-    links: [],
+    links: [{ label: "Source", href: "https://github.com/muhaimeen90/malware-copilot" }],
+  },
+  {
+    title: "Smart Library — Distributed",
+    note: null,
+    period: "May 2025",
+    summary: `A library management system built to demonstrate, concretely, what changes when a
+              monolith is decomposed into services.`,
+    points: [
+      `Decomposed a monolithic service into independently deployable microservices with their own
+       data stores.`,
+      `Containerised the system with Docker and placed an Nginx API gateway in front for load
+       balancing, then measured the effect on resilience under partial failure.`,
+    ],
+    stack: ["Node.js", "SQLite", "Docker", "Nginx", "Microservices"],
+    links: [
+      { label: "Source", href: "https://github.com/muhaimeen90/Smart-Library-Distributed" },
+    ],
+  },
+  {
+    title: "SciVerse LMS",
+    note: null,
+    period: "2025",
+    summary: `A learning management system for science education pairing instructor-authored lessons
+              with a retrieval-augmented question-answering assistant.`,
+    points: [
+      `Indexed lesson content as embeddings in Pinecone so that student questions are answered from
+       course material rather than from the model's parametric memory alone.`,
+      `Implemented multi-role access control separating instructor authoring from student access.`,
+    ],
+    stack: ["Next.js", "TypeScript", "Node.js", "Express", "MongoDB", "Pinecone", "Google AI"],
+    links: [{ label: "Source", href: "https://github.com/muhaimeen90/Sciverse-LMS" }],
   },
   {
     title: "CharityGuard",
     note: null,
-    period: null,
+    period: "Jan 2025 — Mar 2025",
     summary: `A decentralised Web3 charity platform that puts donation workflows on a public ledger
               so that giving can be audited end to end rather than taken on trust.`,
     points: [
@@ -228,19 +263,38 @@ export const projects: Project[] = [
   {
     title: "Connect Four",
     note: null,
-    period: null,
+    period: "May 2025",
     summary: `A Connect Four engine built around minimax search with tuned evaluation heuristics.`,
     points: [
       `Developed the game in Lua, integrating the minimax algorithm for intelligent move selection.`,
       `Improved AI performance by 25% by fine-tuning the evaluation heuristic for faster decisions.`,
     ],
     stack: ["Lua", "Minimax", "Heuristic Search"],
-    links: [{ label: "Source", href: "https://github.com/muhaimeen90/ConnectFour" }],
+    // Team repository — there is no copy under muhaimeen90.
+    links: [{ label: "Source", href: "https://github.com/T-T0ha/Connect-Four" }],
+  },
+  {
+    title: "DU Estate Office Management — Requirements Specification",
+    note: "Requirements Analyst",
+    period: "Jan 2024 — Jun 2024",
+    summary: `A full Software Requirements Specification for an estate management system proposed
+              for the University of Dhaka, co-authored over two semesters.`,
+    points: [
+      `Produced scenario-based, class-based, and behavioural models of the proposed system in UML.`,
+      `Designed the accompanying database schema and traced every requirement through to it.`,
+    ],
+    stack: ["UML", "Requirements Engineering", "Draw.io", "Lucidchart"],
+    links: [
+      {
+        label: "Document",
+        href: "https://docs.google.com/document/d/11MNaZ60gHub1uDNUQBNTqNY-lz3Jglg0Ye3AZFmBxEQ/edit?usp=sharing",
+      },
+    ],
   },
   {
     title: "CubeMate",
     note: null,
-    period: null,
+    period: "Aug 2023 — Dec 2023",
     summary: `A fully functional Rubik's Cube solver written in C++ during my freshman year without
               relying on external libraries.`,
     points: [
