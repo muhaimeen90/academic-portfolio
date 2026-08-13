@@ -13,13 +13,13 @@ export function SiteHeader() {
   const current = pathname.replace(/\/+$/, "") || "/";
 
   return (
-    <header className="mx-auto max-w-measure px-5 pt-8 sm:px-8">
-      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 pb-2">
-        <Link href="/" className="small-caps text-[1.02em] font-bold !text-ink hover:!no-underline">
+    <header className="mx-auto w-full max-w-shell px-6 pt-7 sm:px-8 lg:px-12">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2.5 pb-2.5">
+        <Link href="/" className="text-[1.05em] font-bold !text-ink hover:!no-underline">
           {profile.name}
         </Link>
 
-        <nav className="flex items-baseline gap-x-5">
+        <nav className="flex flex-wrap items-baseline gap-x-4 gap-y-1 sm:gap-x-6">
           {NAV.map((item) => {
             const active = current === item.href;
             return (
@@ -29,8 +29,8 @@ export function SiteHeader() {
                 aria-current={active ? "page" : undefined}
                 className={
                   active
-                    ? "small-caps text-[0.86em] !text-ink underline underline-offset-4 decoration-1"
-                    : "small-caps text-[0.86em] !text-muted hover:!text-ink"
+                    ? "text-[0.88em] uppercase tracking-wider !text-ink underline underline-offset-4 decoration-1"
+                    : "text-[0.88em] uppercase tracking-wider !text-muted hover:!text-ink"
                 }
               >
                 {item.label}

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     default: `${profile.name} — Academic Homepage`,
     template: `%s — ${profile.name}`,
   },
-  description: `Academic homepage of ${profile.name}, final-year B.S. Software Engineering student at the Institute of Information Technology, University of Dhaka. Research interests in human–computer interaction, educational technology, and software systems.`,
+  description: `Academic homepage of ${profile.name}, final-year B.S. Software Engineering student at the University of Dhaka. Research on language models for software engineering, machine learning for security, and efficient multimodal adaptation.`,
   authors: [{ name: profile.name }],
   openGraph: {
     type: "profile",

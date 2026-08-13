@@ -31,7 +31,7 @@ export function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}
-      className="small-caps text-[0.82em] text-muted hover:text-ink"
+      className="text-[0.82em] uppercase tracking-wider text-muted hover:text-ink"
     >
       {/* Rendered only after mount so SSR output matches the pre-hydration DOM */}
       {mounted ? (dark ? "light" : "dark") : "    "}

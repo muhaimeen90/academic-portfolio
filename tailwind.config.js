@@ -16,7 +16,13 @@ module.exports = {
         link: "hsl(var(--link))",
       },
       maxWidth: {
+        // Page shell. Wide on desktop; the grid inside keeps prose readable.
+        shell: "78rem",
         measure: "46rem",
+      },
+      gridTemplateColumns: {
+        // Sidebar (photo / contact / page label) beside the content column.
+        page: "16rem minmax(0, 1fr)",
       },
       borderRadius: {
         none: "0",

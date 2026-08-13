@@ -1,128 +1,75 @@
 import type { Metadata } from "next";
-import { Section } from "@/components/section";
-import { Entry } from "@/components/entry";
 import { asset } from "@/lib/site";
-import {
-  profile,
-  education,
-  researchExperience,
-  projects,
-  skills,
-  service,
-  awards,
-} from "@/content/profile";
+import { profile } from "@/content/profile";
 
 export const metadata: Metadata = {
   title: "Curriculum Vitae",
-  description: `Curriculum vitae of ${profile.name} — education, research experience, projects, skills, service, and awards.`,
+  description: `Curriculum vitae of ${profile.name} (PDF).`,
 };
 
 export default function CV() {
+  const pdf = asset(profile.links.cv);
+
   return (
-    <main className="latex-doc latex-body mx-auto max-w-measure px-5 pb-4 pt-12 sm:px-8">
-      {/* \maketitle */}
-      <div className="latex-title">
-        <h1>{profile.name}</h1>
-        <p className="mt-2 text-[0.9em]">
-          <a href={`mailto:${profile.email}`}>{profile.email}</a>
-          <span className="text-muted"> · </span>
-          <span className="tnum">{profile.phone}</span>
-          <span className="text-muted"> · </span>
-          {profile.location}
-        </p>
-        <p className="text-[0.9em]">
-          <a href={profile.links.github}>github.com/muhaimeen90</a>
-          <span className="text-muted"> · </span>
-          <a href={profile.links.linkedin}>linkedin.com/in/muhaimeen-alam</a>
-        </p>
-        <p className="mt-3.5 text-[0.88em]">
-          <a href={asset(profile.links.cv)}>Download this CV as a PDF</a>
-        </p>
+    <main className="latex-body mx-auto w-full max-w-shell px-6 pb-6 pt-10 sm:px-8 lg:px-12">
+      <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-3">
+        <div className="latex-title">
+          <h1 className="!text-[1.8rem]">Curriculum Vitae</h1>
+          <p className="mt-1 text-[0.92em] italic text-muted">{profile.name}</p>
+        </div>
+
+        <div className="flex flex-wrap gap-3 text-[0.84em] uppercase tracking-wider">
+          <a
+            href={pdf}
+            download
+            className="border border-rule px-3.5 py-1.5 !text-ink hover:!no-underline hover:border-ink"
+          >
+            Download PDF
+          </a>
+          <a
+            href={pdf}
+            target="_blank"
+            rel="noopener"
+            className="border border-rule px-3.5 py-1.5 !text-ink hover:!no-underline hover:border-ink"
+          >
+            Open in new tab ↗
+          </a>
+        </div>
       </div>
 
-      <hr className="latex-rule mt-8" />
+      <hr className="latex-rule mt-4" />
 
-      <Section title="Education">
-        {education.map((e) => (
-          <Entry
-            key={e.degree + e.institution}
-            title={e.institution}
-            right={e.period}
-            subtitle={e.unit ? `${e.degree}, ${e.unit}` : e.degree}
-            meta={`${e.detail} · ${e.location}`}
-          >
-            {e.coursework.length > 0 ? (
-              <p className="mt-1.5 text-[0.9em] text-muted">
-                <span className="small-caps">Selected coursework</span> — {e.coursework.join(", ")}.
-              </p>
-            ) : null}
-          </Entry>
-        ))}
-      </Section>
+      {/* Inline viewer. Mobile browsers routinely refuse to render a PDF in an
+          embedded frame, so the fallback below is the real path there. */}
+      <object
+        data={pdf}
+        type="application/pdf"
+        className="mt-6 hidden h-[calc(100vh-14rem)] min-h-[40rem] w-full border border-rule md:block"
+        aria-label={`${profile.name} — curriculum vitae`}
+      >
+        <div className="p-10 text-center text-[0.95em]">
+          <p>This browser cannot display the PDF inline.</p>
+          <p className="mt-2">
+            <a href={pdf} download>
+              Download the CV
+            </a>{" "}
+            instead.
+          </p>
+        </div>
+      </object>
 
-      <Section title="Research Experience">
-        {researchExperience.map((r) => (
-          <Entry
-            key={r.group}
-            title={r.group}
-            right={r.period}
-            subtitle={r.role}
-            meta={r.location}
-            points={r.points}
-          />
-        ))}
-      </Section>
-
-      <Section title="Projects">
-        {projects.map((p) => (
-          <Entry key={p.title} title={p.title} right={p.period} subtitle={p.role} points={p.points}>
-            <p className="mt-1.5 text-[0.86em] text-muted">
-              <span className="small-caps">Built with</span> — {p.stack.join(", ")}.
-              {p.links.map((l) => (
-                <span key={l.href}>
-                  {" · "}
-                  <a href={l.href}>{l.label}</a>
-                </span>
-              ))}
-            </p>
-          </Entry>
-        ))}
-      </Section>
-
-      <Section title="Technical Skills">
-        <dl className="space-y-2">
-          {skills.map((s) => (
-            <div key={s.group} className="flex flex-col gap-x-3 sm:flex-row">
-              <dt className="shrink-0 font-bold text-[0.93em] sm:w-52">{s.group}</dt>
-              <dd className="text-[0.95em]">{s.items.join(", ")}</dd>
-            </div>
-          ))}
-        </dl>
-      </Section>
-
-      <Section title="Service and Activities">
-        {service.map((s) => (
-          <Entry
-            key={s.organisation}
-            title={s.organisation}
-            right={s.period}
-            subtitle={s.role}
-            points={s.points}
-          />
-        ))}
-      </Section>
-
-      <Section title="Awards and Honours">
-        {awards.map((a) => (
-          <Entry
-            key={a.title}
-            title={a.title}
-            right={a.period}
-            subtitle={a.body}
-            points={a.points}
-          />
-        ))}
-      </Section>
+      <div className="mt-8 border border-rule p-8 text-center md:hidden">
+        <p className="text-[0.95em]">
+          The CV is a one-page PDF. Inline viewers are unreliable on mobile, so it is best opened
+          directly.
+        </p>
+        <a
+          href={pdf}
+          className="mt-4 inline-block border border-rule px-4 py-2 text-[0.86em] uppercase tracking-wider !text-ink hover:!no-underline hover:border-ink"
+        >
+          Open the CV ↗
+        </a>
+      </div>
     </main>
   );
 }

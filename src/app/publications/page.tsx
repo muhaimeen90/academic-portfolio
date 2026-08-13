@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageShell } from "@/components/page-shell";
 import { Section } from "@/components/section";
 import { publications, profile } from "@/content/profile";
 
@@ -17,16 +18,16 @@ export default function Publications() {
   const groups = ["published", "under-review", "in-preparation"] as const;
 
   return (
-    <main className="latex-doc latex-body mx-auto max-w-measure px-5 pb-4 pt-12 sm:px-8">
-      <div className="latex-title">
-        <h1 className="!text-[1.75rem]">Publications</h1>
-      </div>
-
-      <p className="mx-auto mt-6 max-w-[38rem] text-center text-[0.9em] italic text-muted">
-        Author names are listed as they will appear on the manuscript. Nothing below is listed
-        before it exists.
-      </p>
-
+    <PageShell
+      sidebar={
+        <div className="latex-title">
+          <h1 className="!text-[1.8rem]">Publications</h1>
+          <p className="mt-2 text-[0.9em] italic text-muted">
+            Nothing is listed before it exists; author lists appear as they will on the manuscript.
+          </p>
+        </div>
+      }
+    >
       {groups.map((status) => {
         const items = publications.filter((p) => p.status === status);
         if (items.length === 0) return null;
@@ -45,11 +46,12 @@ export default function Publications() {
                   </span>
 
                   <div className="mt-2 text-[0.95em]" style={{ textIndent: 0 }}>
-                    <span className="small-caps text-muted">Contribution</span> — {p.contribution}
+                    <span className="uppercase tracking-wider text-muted">Contribution</span> —{" "}
+                    {p.contribution}
                   </div>
 
                   <details className="mt-2.5" style={{ textIndent: 0 }}>
-                    <summary className="cursor-pointer text-[0.88em] text-link small-caps">
+                    <summary className="cursor-pointer text-[0.86em] uppercase tracking-wider text-link">
                       BibTeX
                     </summary>
                     <pre className="latex-verbatim mt-2">{p.bibtex}</pre>
@@ -60,6 +62,6 @@ export default function Publications() {
           </Section>
         );
       })}
-    </main>
+    </PageShell>
   );
 }

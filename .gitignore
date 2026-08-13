@@ -26,3 +26,6 @@ yarn-error.log*
 *.tsbuildinfo
 
 # NOTE: .github is intentionally NOT ignored — the deploy workflow lives there.
+
+# Full-resolution source assets — optimised copies live in public/
+assets-src/

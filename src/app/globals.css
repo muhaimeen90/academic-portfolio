@@ -71,63 +71,29 @@
    article rather than a website.
    --------------------------------------------------------------------------- */
 @layer components {
-  /* \maketitle */
-  .latex-title {
-    @apply text-center;
-  }
-
+  /* Page heading */
   .latex-title h1 {
-    font-size: 2.15rem;
+    font-size: 2.1rem;
     line-height: 1.15;
-    font-weight: 400;
+    font-weight: 700;
     letter-spacing: 0.005em;
   }
 
-  /* \begin{abstract} */
-  .latex-abstract {
-    max-width: 38rem;
-    margin-inline: auto;
-    font-size: 0.945em;
-  }
-
-  .latex-abstract > .abstract-heading {
-    @apply text-center;
-    font-variant: small-caps;
-    letter-spacing: 0.08em;
-    font-size: 0.9em;
-  }
-
-  /* \section — numbered via counters, restarting on every page, as a
-     standalone document would. */
-  .latex-doc {
-    counter-reset: section;
-  }
-
+  /* \section with \titlerule — bold, caps, hairline beneath, matching the
+     \titleformat used in the CV source. Unnumbered. */
   .latex-section > h2 {
-    counter-increment: section;
     font-weight: 700;
-    font-size: 1.16rem;
-    letter-spacing: 0.02em;
-    font-variant: small-caps;
-  }
-
-  .latex-section > h2::before {
-    content: counter(section) "\00a0\00a0";
-    font-variant: normal;
-    font-weight: 700;
-  }
-
-  /* An unnumbered \section* */
-  .latex-section-unnumbered > h2 {
-    font-weight: 700;
-    font-size: 1.16rem;
-    letter-spacing: 0.02em;
-    font-variant: small-caps;
+    font-size: 0.95rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid hsl(var(--rule));
   }
 
   /* Justified body copy with real hyphenation — the strongest LaTeX tell.
      Turned off on narrow screens where justification opens rivers. */
-  .latex-body p {
+  .latex-body p,
+  .latex-body li {
     text-align: left;
     hyphens: auto;
     orphans: 2;
@@ -135,7 +101,8 @@
   }
 
   @media (min-width: 640px) {
-    .latex-body p {
+    .latex-body p,
+    .latex-body li {
       text-align: justify;
     }
   }
