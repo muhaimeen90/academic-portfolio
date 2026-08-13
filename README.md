@@ -47,8 +47,9 @@ what makes the site work as a GitHub Pages project site.
 
 ## Deployment
 
-`.github/workflows/deploy.yml` builds and publishes to GitHub Pages on every push to `main`.
-Repository **Settings → Pages → Source** must be set to **GitHub Actions**.
+`.github/workflows/deploy.yml` builds the static export on every push to `main` and force-pushes it
+to the `gh-pages` branch, which is what Pages serves. Nothing else to configure — do not commit to
+`gh-pages` by hand, as each deploy replaces it wholesale.
 
 If you ever move this to a custom domain or to the `muhaimeen90.github.io` user site, update
 `basePath` in `next.config.ts` and `BASE_PATH` / `SITE_URL` in `src/lib/site.ts` together.
