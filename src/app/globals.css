@@ -1,0 +1,219 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------------------
+   Palette. Light is warm paper; dark is a dimmed reading room. Every colour is
+   defined here on :root so no token exists only inside a media/class block.
+   --------------------------------------------------------------------------- */
+@layer base {
+  :root {
+    --paper: 40 30% 99%;
+    --ink: 0 0% 8%;
+    --muted: 0 0% 40%;
+    --rule: 0 0% 78%;
+    --link: 224 72% 36%;
+  }
+
+  .dark {
+    --paper: 30 7% 10%;
+    --ink: 40 14% 87%;
+    --muted: 40 6% 56%;
+    --rule: 40 5% 25%;
+    --link: 213 88% 74%;
+  }
+
+  * {
+    border-radius: 0;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    /* Keeps the footer on the bottom edge of short pages (e.g. Publications). */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: hsl(var(--paper));
+    color: hsl(var(--ink));
+    font-family: theme("fontFamily.serif");
+    font-size: 17px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-kerning: normal;
+    font-variant-ligatures: common-ligatures;
+  }
+
+  body > main {
+    flex: 1 0 auto;
+  }
+
+  a {
+    color: hsl(var(--link));
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  ::selection {
+    background: hsl(var(--link) / 0.18);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Document furniture — the pieces that make a web page read as a typeset
+   article rather than a website.
+   --------------------------------------------------------------------------- */
+@layer components {
+  /* \maketitle */
+  .latex-title {
+    @apply text-center;
+  }
+
+  .latex-title h1 {
+    font-size: 2.15rem;
+    line-height: 1.15;
+    font-weight: 400;
+    letter-spacing: 0.005em;
+  }
+
+  /* \begin{abstract} */
+  .latex-abstract {
+    max-width: 38rem;
+    margin-inline: auto;
+    font-size: 0.945em;
+  }
+
+  .latex-abstract > .abstract-heading {
+    @apply text-center;
+    font-variant: small-caps;
+    letter-spacing: 0.08em;
+    font-size: 0.9em;
+  }
+
+  /* \section — numbered via counters, restarting on every page, as a
+     standalone document would. */
+  .latex-doc {
+    counter-reset: section;
+  }
+
+  .latex-section > h2 {
+    counter-increment: section;
+    font-weight: 700;
+    font-size: 1.16rem;
+    letter-spacing: 0.02em;
+    font-variant: small-caps;
+  }
+
+  .latex-section > h2::before {
+    content: counter(section) "\00a0\00a0";
+    font-variant: normal;
+    font-weight: 700;
+  }
+
+  /* An unnumbered \section* */
+  .latex-section-unnumbered > h2 {
+    font-weight: 700;
+    font-size: 1.16rem;
+    letter-spacing: 0.02em;
+    font-variant: small-caps;
+  }
+
+  /* Justified body copy with real hyphenation — the strongest LaTeX tell.
+     Turned off on narrow screens where justification opens rivers. */
+  .latex-body p {
+    text-align: left;
+    hyphens: auto;
+    orphans: 2;
+    widows: 2;
+  }
+
+  @media (min-width: 640px) {
+    .latex-body p {
+      text-align: justify;
+    }
+  }
+
+  /* \bibitem — hanging indent with a bracketed marker */
+  .latex-bibitem {
+    padding-left: 2.6rem;
+    text-indent: -2.6rem;
+  }
+
+  .latex-bibitem > .bib-marker {
+    display: inline-block;
+    width: 2.6rem;
+    text-indent: 0;
+  }
+
+  /* \footnote marker */
+  .latex-footnote-mark {
+    font-size: 0.72em;
+    vertical-align: super;
+    line-height: 0;
+    color: hsl(var(--link));
+  }
+
+  /* \hrule */
+  .latex-rule {
+    border: 0;
+    border-top: 1px solid hsl(var(--rule));
+  }
+
+  /* verbatim / BibTeX block */
+  .latex-verbatim {
+    @apply font-mono;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    white-space: pre;
+    overflow-x: auto;
+    border: 1px solid hsl(var(--rule));
+    background: hsl(var(--ink) / 0.028);
+    padding: 0.85rem 1rem;
+  }
+
+  .dark .latex-verbatim {
+    background: hsl(var(--ink) / 0.05);
+  }
+
+  /* The date-right / title-left row used throughout the CV */
+  .latex-entry-head {
+    @apply flex flex-col gap-x-4 sm:flex-row sm:items-baseline sm:justify-between;
+  }
+
+  /* \itemize with the LaTeX bullet weight */
+  .latex-itemize {
+    @apply space-y-1;
+    list-style: none;
+    padding-left: 1.15rem;
+  }
+
+  .latex-itemize > li {
+    position: relative;
+  }
+
+  .latex-itemize > li::before {
+    content: "•";
+    position: absolute;
+    left: -1.15rem;
+    color: hsl(var(--muted));
+  }
+}
+
+@layer utilities {
+  .small-caps {
+    font-variant: small-caps;
+    letter-spacing: 0.05em;
+  }
+
+  /* Tabular figures keep dates and GPAs aligned down the right margin */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+}
