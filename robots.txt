@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://muhaimeen90.github.io/academic-portfolio/sitemap.xml

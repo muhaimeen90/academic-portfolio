@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>https://muhaimeen90.github.io/academic-portfolio/</loc>
+<lastmod>2026-08-27T11:08:00.393Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>1</priority>
+</url>
+<url>
+<loc>https://muhaimeen90.github.io/academic-portfolio/publications/</loc>
+<lastmod>2026-08-27T11:08:00.393Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://muhaimeen90.github.io/academic-portfolio/projects/</loc>
+<lastmod>2026-08-27T11:08:00.393Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://muhaimeen90.github.io/academic-portfolio/cv/</loc>
+<lastmod>2026-08-27T11:08:00.393Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+</urlset>
